@@ -20,6 +20,13 @@ class fail:public exception{ //class จัดการ func cin.fail
 	}
 }fail;
 
+class range:public exception{ //class จัดการ func cin.fail
+	public:
+	virtual const char* what() const throw() {
+		return "range: -1000 to 1000";
+	}
+}range;
+
 int main(){
 	int x,y,a = 1;
 	double d;
@@ -30,12 +37,13 @@ try{
 
 	/*curated exception handling*/
 	if(cin.fail()){
-		throw fail; //throw object
+		throw fail;
 		//throw("Incorrect type entered");
 		//cerr<<"Incorrect type entered"; return 1;
 	}
 	if(abs(x)>1000 ||abs(y)>1000){
-		throw("Value out of range");
+		throw range; //ไปเขียน class มารับ throw -> class range
+		//throw("Value out of range");
 		//cerr<<"Value out of range"; return 1;
 	}
 
